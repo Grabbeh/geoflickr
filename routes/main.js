@@ -8,7 +8,6 @@ exports.home = function(req, res){
 };
 
 exports.test = function(req, res){
-
 	function searchObject(obj) {
 		this.lat = obj.lat;
 		this.lon = obj.lon;

@@ -1,47 +1,12 @@
-var sys = require("sys"),
-   http = require("http"),
-   md5 = require('./md5');
+var http = require("http");
 
-var Request= function Request(api_key, shared_secret, auth_token, isFeedRequest) {
-    this._configure(api_key, shared_secret, auth_token);
-    this.isFeedRequest= false;
-    if( isFeedRequest !== undefined ) this.isFeedRequest= isFeedRequest;  
-
-    if( this.isFeedRequest ) {
-        this.baseUrl= "/services/feeds";  
-    }
-    else {
-        this.baseUrl= "/services/rest";  
-    }
+var Request= function Request(api_key) {
+    this._configure(api_key);
+    this.baseUrl= "/services/rest";  
 };
 
-Request.prototype._configure= function(api_key, shared_secret, auth_token) {
+Request.prototype._configure= function(api_key) {
     this.api_key= api_key;
-    this.shared_secret= shared_secret;
-    this.auth_token= auth_token;
-};
-
-Request.prototype.setAuthenticationToken= function(auth_token) {
-    this._configure(this.api_key, this.shared_secret, auth_token);
-};
-
-Request.prototype.generateSignature= function(shared_secret, arguments) {
-    var argument_pairs= [];
-    for(var key in arguments ) {   
-        argument_pairs[argument_pairs.length]= [key, arguments[key]];
-    }
-    
-    argument_pairs.sort(function(a,b) {
-        if ( a[0]== b[0] ) return 0 ;
-        return a[0] < b[0] ? -1 : 1;  
-    });
-    var args= "";
-    for(var i=0;i<argument_pairs.length;i++) {
-        args+= argument_pairs[i][0];
-        args+= argument_pairs[i][1];
-    }
-    var sig= this.shared_secret+args;
-    return md5.md5(sig);
 };
 
 Request.prototype.executeRequest= function(method, arguments, sign_it, result_mapper, callback) {
@@ -54,37 +19,21 @@ Request.prototype.executeRequest= function(method, arguments, sign_it, result_ma
     arguments.format= "json";
     arguments.nojsoncallback= "1";
 
-    if( this.isFeedRequest ) {
-        argumentString= "/"+ method;
-    }
-    else {
         arguments.api_key= this.api_key;
         arguments["method"]= method;
-        if( this.auth_token ) arguments.auth_token= this.auth_token;
-    
-        if( this.shared_secret && (sign_it || this.auth_token) ) {
-            api_sig= this.generateSignature(this.shared_secret, arguments);
-            if( api_sig ) {
-                arguments.api_sig= api_sig;
-            }
-        }
-    }
+           
     var operator= "?";
     for(var key in arguments) {
         argumentString+= (operator + key + "=" + arguments[key]);
         if( operator == "?" ) operator= "&";
     }
-   
-    var isFeedRequest= this.isFeedRequest;   
 
     var reqOptions = {
-    method: method,
+    method: 'GET',
     port: 80,
     hostname:"api.flickr.com",
-    path: this.baseUrl+ argumentString
+    path: this.baseUrl + argumentString
     }
-
-
 
     var req = http.request(reqOptions, function (response) {
        
@@ -99,22 +48,6 @@ Request.prototype.executeRequest= function(method, arguments, sign_it, result_ma
             if( result ) {  
                 result= result.replace(/\\'/g,"'");
             }
-            if( isFeedRequest ) {
-                var m;
-                if(!result || (m= result.match(/[\S\s]+We were unable to generate the feed you requested, for the following reason:<\/p>\s*?<p[\S\s]+?>([\S\s]+?)<\/p>[\S\s]+/) ) ) {
-                    var  errorString= m[1].replace(/^\s+/,"");
-                    errorString= errorString.replace(/\s+$/, "");
-                    callback({code: -1, message: errorString});
-                }
-                else {
-                    var res= JSON.parse(result);
-                    if( result_mapper ) {
-                        res= result_mapper(res);
-                    }
-                    callback(null, res);
-                }
-            } 
-            else {
                 var res= JSON.parse(result);
                 if( res.stat && res.stat == "ok" ) {
                     // Munge the response to strip out the stat and just return the response value
@@ -131,7 +64,7 @@ Request.prototype.executeRequest= function(method, arguments, sign_it, result_ma
                 else {
                     callback({code: res.code, message: res.message});
                 }
-            }
+            
         });
     });       
     req.end();
