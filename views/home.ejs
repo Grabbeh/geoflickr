@@ -13,19 +13,16 @@
           <div class="twelvecol">
             <div class="hover" id="advancedsearch">Show advanced options</div>
             <div id="advancedsearchoptions" style="display: none">
-
                 <form>
-                  
                     <div><p><b>Filter by licence</b></p></div>
                    <ul id="licenseform"> 
                     <li><input class="checkbox" type="checkbox" name="license" value="0">All rights reserved</li>
-                    <li><input class="checkbox" type="checkbox" name="license" value="1">Attribution-Non-Commercial-Share Alike License</li>
-                    <li><input class="checkbox" type="checkbox" name="license" value="2">Attribution-Non-Commercial License</li>
-                    <li><input class="checkbox" type="checkbox" name="license" value="3">Attribution-Non-Commercial-NoDerivs License</li>
-                    <li><input class="checkbox" type="checkbox" name="license" value="4">Attribution License</li>
-
-                    <li><input class="checkbox" type="checkbox" name="license" value="5">Attribution-Share Alike License</li>
-                    <li><input class="checkbox" type="checkbox" name="license" value="6">Attribution-No Derivs License</li>
+                    <li><input class="checkbox" type="checkbox" name="license" value="1">Attribution-Non-Commercial-Share Alike Licence</li>
+                    <li><input class="checkbox" type="checkbox" name="license" value="2">Attribution-Non-Commercial Licence</li>
+                    <li><input class="checkbox" type="checkbox" name="license" value="3">Attribution-Non-Commercial-NoDerivs Licence</li>
+                    <li><input class="checkbox" type="checkbox" name="license" value="4">Attribution Licence</li>
+                    <li><input class="checkbox" type="checkbox" name="license" value="5">Attribution-Share Alike Licence</li>
+                    <li><input class="checkbox" type="checkbox" name="license" value="6">Attribution-No Derivs Licence</li>
                     <li><input class="checkbox" type="checkbox" name="license" value="7">No known copyright restrictions</li>
                     <li><input class="checkbox" type="checkbox" name="license" value="8">United States Government Work</li>
                   </ul>
@@ -55,9 +52,7 @@
             <div class="twelvecol">
                <div><span id="photonumber"></span><span class="hover" id="previousbutton"></span><span class="hover" id="nextbutton"></span></div>
                <span class="bigimage"></span>
-               
                <div id="photos" class="photolist"></div>
-             
             </div>
           </div>
          <div class="clearfooter"></div>
@@ -70,97 +65,85 @@
 <script src="https://maps-api-ssl.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
+var map;
+var marker;
+$(document).ready(function () {
 
-   var map;
-   var marker;
-
-   $(document).ready(function() {
-  
     create_map();
-   
-      $('#searchsubmit').click(function(e){
-            e.preventDefault();
-              if ($('#userlocation').val().length === 0){
 
-                if (!$(this).parent().hasClass("active")){
-                             
-                             alert("Please provide a location");
-                           }
-          }
-          else {
+    $('#searchsubmit').click(function (e) {
+        e.preventDefault();
+        if($('#userlocation').val().length === 0) {
+            if(!$(this).parent().hasClass("active")) {
+                alert("Please provide a location");
+            }
+        } else {
             geocodeAddress()
-          }  
-      })
+        }
+    });
 
-       $("#geolocate").click(function(){ 
-       navigator.geolocation.getCurrentPosition(geolocate, function(){});
-       });
-   
-       $('#userlocation').keypress(function (e) {
-             if (e.which == 13) {
-               geocodeAddress();   
-             }
-           });
-   
-       $('#userlocationsubmit').click(function(){
-       geocodeAddress();
-       });
+    $("#geolocate").click(function () {
+        navigator.geolocation.getCurrentPosition(geolocate, function () {});
+    });
 
-        $('.photolist').delegate('a', 'click', function(event){
-           $('#photonumber').children().eq(1).remove().end();
-           $('#previousbutton').text(" Previous / ");
-            $('#nextbutton').text("Next");
-           var bigImg = $("<img/>").attr("src", $(this).attr('href')).addClass('bigimage');
-           $('.bigimage').html(bigImg);
-           event.preventDefault();
-            if (!$(this).hasClass("active")) {
+    $('#userlocation').keypress(function (e) {
+        if(e.which == 13) {
+            geocodeAddress();
+        }
+    });
+
+    $('#userlocationsubmit').click(function () {
+        geocodeAddress();
+    });
+
+    $('.photolist').delegate('a', 'click', function (event) {
+        $('#photonumber').children().eq(1).remove().end();
+        $('#previousbutton').text(" Previous / ");
+        $('#nextbutton').text("Next");
+        var bigImg = $("<img/>").attr("src", $(this).attr('href')).addClass('bigimage');
+        $('.bigimage').html(bigImg);
+        event.preventDefault();
+        if(!$(this).hasClass("active")) {
             $("a.active").removeClass("active");
             $(this).addClass("active");
+        }
+    })
+
+    $('#nextbutton').click(function (e) {
+        var nextImg = $('<img/>').attr("src", $('a.active').parent().next().find('a').attr('href')).addClass('bigimage');
+        $('.bigimage').html(nextImg);
+        $('a.active').parent().next().find('a').addClass("active");
+        $('a.active').parent().prev().find('a').removeClass("active");
+        event.preventDefault()
+    })
+
+    $('#previousbutton').click(function (e) {
+        var prevImg = $('<img/>').attr("src", $('a.active').parent().prev().find('a').attr('href')).addClass('bigimage');
+        $('.bigimage').html(prevImg);
+        $('a.active').parent().prev().find('a').addClass("active");
+        $('a.active').parent().next().find('a').removeClass("active");
+        event.preventDefault()
+    })
+
+    $('#advancedsearch').click(function () {
+        $('#advancedsearchoptions').toggle('slow', function () {
+            if($('#advancedsearchoptions').is(':visible')) {
+                $('#advancedsearch').text('Hide advanced options');
+            } else {
+                $('#advancedsearch').text('Show advanced options');
+            }
+        });
+    })
+
+    $('#locationtoggle').click(function () {
+        $('#locations').toggle('slow', function () {
+            if($('#locations').is(':visible')) {
+                $('#locationtoggle').text('Recent locations - hide')
+            } else {
+                $('#locationtoggle').text('Recent locations - show')
             }
         })
+    })
+});
 
-
-        $('#nextbutton').click(function(e){
-          var nextImg = $('<img/>').attr("src", $('a.active').parent().next().find('a').attr('href')).addClass('bigimage');
-          $('.bigimage').html(nextImg);
-          $('a.active').parent().next().find('a').addClass("active");
-          $('a.active').parent().prev().find('a').removeClass("active");
-          event.preventDefault()
-
-        })
-
-        $('#previousbutton').click(function(e){
-         var prevImg = $('<img/>').attr("src", $('a.active').parent().prev().find('a').attr('href')).addClass('bigimage');
-          $('.bigimage').html(prevImg);
-          $('a.active').parent().prev().find('a').addClass("active");
-          $('a.active').parent().next().find('a').removeClass("active");
-          event.preventDefault()
-        })
-
-        $('#advancedsearch').click(function(){
-          $('#advancedsearchoptions').toggle('slow', function(){
-
-              if ($('#advancedsearchoptions').is(':visible')){
-                  $('#advancedsearch').text('Hide advanced options');
-                }
-            else {
-              $('#advancedsearch').text('Show advanced options');
-            }
-          });
-        })
-
-        $('#locationtoggle').click(function(){
-          $('#locations').toggle('slow', function(){
-
-            if($('#locations').is(':visible')){
-              $('#locationtoggle').text('Recent locations - hide')
-            }
-            else {
-              $('#locationtoggle').text('Recent locations - show')
-            }
-          })
-        })
-
-   });
-   
 </script>
