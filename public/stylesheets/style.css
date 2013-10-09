@@ -98,6 +98,11 @@ margin: 0px 10px 10px 0px;
     padding: 10px 0 10px 0;
 }
 
+#prev-next-buttons {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 #footer {
     position:absolute;
     bottom:0;
