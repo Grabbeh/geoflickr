@@ -106,7 +106,7 @@ function clearImages() {
     $('#photonumber').children().remove().end();
     $('#photos').children().remove().end();
     $('.bigimage').children().remove().end();
-    $('#photos').text('Loading...')
+    $('#photos').text('Loading... (this can take some time due to amount of data)')
 }
 
 function geolocate(pos) {
@@ -164,7 +164,7 @@ function processFlickrData(data) {
     var photos = data.photo;
 
     if (photos.length === 0) {
-        $('#photos').append("<span>" + "Sorry, no photos for here" + "</span>");
+        $('#photos').append("<span>" + "Sorry, no photos for here (although this app can be a little temperamental so you might like to try again)." + "</span>");
     } else {
 
         if (photos.length === 1) {
@@ -182,12 +182,10 @@ function processFlickrData(data) {
             var thumbnail = "http://farm" + farmId + ".staticflickr.com/" + serverId + "/" + photoId + "_" + photoSecret + "_t.jpg"
             var mainurl = "http://farm" + farmId + ".staticflickr.com/" + serverId + "/" + photoId + "_" + photoSecret + ".jpg"
 
-
             $('#photos').append("<span>" + "<a href=" + mainurl + ">" + "<img src=" + thumbnail + "></a></span>").addClass('photobox');
 
         };
     }
-
 }
 
 function collectLicenseData() {
