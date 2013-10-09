@@ -145,17 +145,16 @@ div#mymap {
 
 /* HOME PAGE */
 
-.photobox {
-    margin:10px;
-    padding: 10px;
+#locations {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .photolist {
     list-style-type:none;
-    padding-left: 0px; 
-    padding-top: 10px;
-    padding-bottom: 0px;
-    margin-top: 0px;
+    padding: 10px 0 0 0;
+    margin: 0;
 }
 
 #photos{
@@ -164,10 +163,8 @@ div#mymap {
 
 .photolist li {
     float: left;
-    padding-right: 10px;
-    padding-top: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    padding: 0 10px 0 0;
+    margin: 0;
 }
 
 .bigimage {

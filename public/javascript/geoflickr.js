@@ -106,7 +106,7 @@ function clearImages() {
     $('#photonumber').children().remove().end();
     $('#photos').children().remove().end();
     $('.bigimage').children().remove().end();
-    $('#photos').text('Loading... (this can take some time due to amount of data)')
+    $('#photos').text('Loading (this can take some time due to the amount of data)...')
 }
 
 function geolocate(pos) {
@@ -133,7 +133,7 @@ function geocodeAddress() {
     }, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
 
-            $('#locations').append("<li>" + results[0].formatted_address + "</li>");
+            $('#locations').append("<li> - " + results[0].formatted_address + "</li>");
             var userloc = results[0].geometry.location;
             map.setCenter(userloc);
             var lat = userloc.lat();
@@ -155,7 +155,7 @@ function reverseGeocode(latLon) {
     geocoder.geocode({
         location: latLon
     }, function (results, status) {
-        $('#locations').append("<li>" + results[0].formatted_address + "</li>");
+        $('#locations').append("<li> - " + results[0].formatted_address + "</li>");
     })
 }
 
