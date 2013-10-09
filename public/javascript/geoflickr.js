@@ -72,10 +72,10 @@ function ajaxLatLonPost(lat, lon) {
         processData: false,
         data: JSON.stringify(obj),
         success: function (data) {
-            if (data) { console.log(data) 
-            processFlickrData(data);
-        }
-        else { $('#photos').text('Apologies - no response from Flickr - please try again')}
+            if (data.pages === 0) {
+                $('#photos').text('Apologies - no response from Flickr - please try again')
+            }
+            else { processFlickrData(data);}
         }
     });
 };
