@@ -1,11 +1,21 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
 html,
 body {
-    width:100%;
     height:100%;
     margin: 0px auto; 
     padding:0; 
-    font-family: 'rooney-web', Arial;
+    font-family:  'Open Sans', Arial;
+}
 
+#container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+#content-container {
+    width: 70%;
+    margin: 0 auto;
 }
 
 .row {
@@ -16,37 +26,35 @@ overflow: hidden;
 }
 
 input {
-font-family: 'rooney-web', Arial;
-}
-
-textarea {
-    width: 100%;
-    font-family: 'rooney-web', Arial;
-    font-size: 16px;
-    padding: 10px;
-    margin: 0px;
-        -webkit-box-sizing: border-box;
-           -moz-box-sizing: border-box;
-                box-sizing: border-box;
+font-family: 'Open Sans', Arial;
 }
 
 a {color: #000000;}
 a:link {text-decoration: none;}
 a:visited {text-decoration: none;}
 a:active {text-decoration: none;}
-/*a:hover {text-decoration: underline;}*/
 
-.underline a:hover {
+a:hover {
     text-decoration: underline;
 }
 
+#licenseform {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.checkbox {
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
 #maincontainer {
     position:relative;
     width:100%;   
     min-height:100%;
     margin:0;
     padding:0;
-    margin-bottom: -50px;
+    margin-bottom: -100px;
 }
 
 .hover:hover{
@@ -67,7 +75,6 @@ padding-right: 20px;
     width:100%;
     background:#0080FF;
     height: 50px;
-    box-shadow: 0 0 8px #2B1B17;
 }
 
 #header p {
@@ -100,21 +107,31 @@ padding-right: 20px;
     position:absolute;
     bottom:0;
     width:100%;
-    height:40px;  
-    background:#726E6D;
+    height:100px;  
+    background:black;
     margin:0; 
     padding:0;
 }
 
+#footer-wording {
+    color: white;
+    padding: 10px;
+}
+
+#footer-wording a {
+    color: white;
+    text-decoration: underline;
+}
+
 .clearfooter {
-height: 40px;
+height: 100px;
 clear: both;
 }
 
 div#map {
     position:relative; 
     width:100%;
-    height: 600px;
+    height: 400px;
 }
 
 div#mymap {
@@ -153,12 +170,14 @@ div#mymap {
     margin-bottom: 0px;
 }
 
+.bigimage {
+    width: 100%;
+}
 
 
 #geolocate:hover {
     cursor:pointer; 
-    cursor:hand;
-    background:#FFE880;
+    text-decoration: underline;
  }
 
 .findaroute{
@@ -184,72 +203,14 @@ input.newinput {
 
 /* COLUMNS */
 
-.onecol, .twocol, .threecol, .fourcol, .fivecol, .sixcol, .sevencol, .eightcol, .tencol, .elevencol {
+.sixcol {
 margin-right: 3.8%;
 float: left;
 min-height: 1px;
 }
 
-.ninecol {
-    margin-right: 2%;
-    float: left;
-    min-height: 1px;
-}
-
-.row .onecol {
-width: 4.85%;
-}
-
-.row .twocol {
-width: 13.45%;
-}
-
-.row .threecol {
-width: 22.05%;
-}
-
-.homerow .threecol {
-width: 22.05%;
-}
-
-.row .fourcol {
-width: 30.75%;
-}
-
-.homerow .fourcol {
-width: 30.75%;
-}
-
-.row .fivecol {
-width: 39.45%;
-}
-
 .row .sixcol {
 width: 48%;
-}
-
-.homerow .sixcol {
-    width: 48%;
-}
-
-.row .sevencol {
-width: 56.75%;
-}
-
-.row .eightcol {
-width: 65.4%;
-}
-
-.row .ninecol {
-width: 74.05%;
-}
-
-.row .tencol {
-width: 82.7%;
-}
-
-.row .elevencol {
-width: 91.35%;
 }
 
 .row .twelvecol {
@@ -262,23 +223,6 @@ float: left;
 margin-right: 0px;
 }
 
-/*commented out because caused markers to reduce in size on certain platforms
-
-img, object, embed {
-max-width: 100%;
-}*/
-
-/* Smaller screens - removed as intereres with header size
-
-@media only screen and (max-width: 1023px) {
-
-    body {
-    font-size: 0.8em;
-    line-height: 1.5em;
-    }
-    
-    }
-*/
 
 /* MOBILE RESPONSIVE CHANGE */
 
@@ -288,9 +232,11 @@ max-width: 100%;
     
     -webkit-text-size-adjust: none;
     }
-    
-    .container, body  {
-    width: 100%;
+
+   #container {
+    width: 95%;
+   }
+    body  {
     min-width: 0;
     margin-left: 0px;
     margin-right: 0px;
@@ -316,51 +262,6 @@ max-width: 100%;
     padding-right: 0px;
     }
 
-    .row .newthreecol {
-    width: auto;
-    float: none;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    }
-
-    .homerow {
-    width: 100%;
-    min-width: 0;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-    }
-    
-    .homerow .onecol, .row .twocol, .homerow .threecol, .homerow .fourcol, .row .fivecol, .homerow .sixcol, .row .sevencol, .row .eightcol, .row .ninecol, .row .tencol, .row .elevencol, .row .twelvecol {
-    width: auto;
-    float: none;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-    }
-
-    .maphomerow {
-    width: 100%;
-    min-width: 0;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-    }
-    .maphomerow .maptwelvecol {
-    width: auto;
-    float: none;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-}
 
 
 }​
