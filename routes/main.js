@@ -4,7 +4,7 @@ var FlickrAPI = require('../flickrnode/lib/flickr').FlickrAPI
 , flickr = new FlickrAPI(api.details.key);
 
 exports.home = function(req, res){
-  res.render('home', {title: "Geoflickr"});
+  res.render('home');
 };
 
 exports.test = function(req, res){
