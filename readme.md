@@ -1,4 +1,5 @@
-**Geoflickr**
+Geoflickr
+=========
 
 Geoflickr simply uses the Flickr and Google Maps APIs to allow you to search for photos of cats or otherwise, on a geographical basis. 
 
