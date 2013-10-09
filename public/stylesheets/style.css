@@ -148,7 +148,7 @@ div#mymap {
 #locations {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 0 10px 0;
 }
 
 .photolist {
