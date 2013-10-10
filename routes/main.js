@@ -7,7 +7,7 @@ exports.home = function(req, res){
   res.render('home');
 };
 
-exports.test = function(req, res){
+exports.api = function(req, res){
 	function searchObject(obj) {
 		this.lat = obj.lat;
 		this.lon = obj.lon;
@@ -21,4 +21,9 @@ exports.test = function(req, res){
 		res.json(results);
 	});
 }
+
+exports.privacy = function(req, res){
+  res.render('privacy');
+}
+
 
