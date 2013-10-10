@@ -145,18 +145,31 @@ $(document).ready(function () {
     })
     
    $('#nextbatch').click(function(){
-      clearImages();
+   
+      if (currentarray < chunksarray.length){
+       clearImages();
        $('#previousbatch').text('Previous');
        currentarray = currentarray + 1;
        processFlickrData(chunksarray[currentarray])
+   }
+   
+   else {
+      $('#nextbatch).text('Finish');
+   
+       }
 
    })
    
    $('#previousbatch').click(function(){
+   
+      
       clearImages();
       var currentarray = currentarray - 1;
       processFlickrData(chunksarray[currentarray]);
       currentarray = currentarray;
+      if (currentarray === 0) {
+       $('#previousbatch').text('Start');
+      }
    })
     
 });
