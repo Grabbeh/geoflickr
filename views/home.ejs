@@ -164,9 +164,8 @@ $(document).ready(function () {
    
       
       clearImages();
-      var currentarray = currentarray - 1;
+      currentarray = currentarray - 1;
       processFlickrData(chunksarray[currentarray]);
-      currentarray = currentarray;
       if (currentarray === 0) {
        $('#previousbatch').text('Start');
       }
