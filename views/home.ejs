@@ -145,24 +145,18 @@ $(document).ready(function () {
     })
     
    $('#nextbatch').click(function(){
-   
-      if (currentarray < chunksarray.length){
+    if (currentarray < chunksarray.length){
        clearImages();
        $('#previousbatch').text('Previous');
        currentarray = currentarray + 1;
        processFlickrData(chunksarray[currentarray])
    }
-   
    else {
       $('#nextbatch).text('Finish');
-   
        }
-
    })
    
    $('#previousbatch').click(function(){
-   
-      
       clearImages();
       currentarray = currentarray - 1;
       processFlickrData(chunksarray[currentarray]);
@@ -170,7 +164,6 @@ $(document).ready(function () {
        $('#previousbatch').text('Start');
       }
    })
-    
 });
 
 </script>
