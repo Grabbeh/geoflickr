@@ -52,8 +52,8 @@
                <div id="prev-next-buttons"><span id="photonumber"></span><span class="hover" id="previousbutton"></span><span class="hover" id="nextbutton"></span></div>
                <span class="bigimage"></span>
                <div id="photos" class="photolist"></div>
-               
-            <span id="previousbatch"></span><span id="nextbatch"></span>
+              
+             <div id="prevnextarray"><span id="previousbatch"></span><span id="nextbatch"></span></div>
             </div>
           </div>
          <div class="clearfooter"></div>
@@ -144,24 +144,16 @@ $(document).ready(function () {
     })
     
    $('#nextbatch').click(function(){
-    if (currentarray < chunksarray.length){
        clearImages();
-       $('#previousbatch').text('Previous');
        currentarray = currentarray + 1;
-       processFlickrData(chunksarray[currentarray])
-   }
-   else {
-      $('#nextbatch).text('Finish');
-       }
+       processFlickrData(chunksarray[currentarray]);
+       $('#previousbatch').text("Previous");
    })
    
    $('#previousbatch').click(function(){
       clearImages();
       currentarray = currentarray - 1;
       processFlickrData(chunksarray[currentarray]);
-      if (currentarray === 0) {
-       $('#previousbatch').text('Start');
-      }
    })
 });
 

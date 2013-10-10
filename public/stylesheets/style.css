@@ -173,8 +173,16 @@ div#mymap {
     margin-top: 10px;
 }
 
+#prevnextarray {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#previousbatch {
+    cursor: pointer;
+}
 #nextbatch {
     float: right;
+    cursor: pointer;
 }
 
 input.newbutton {

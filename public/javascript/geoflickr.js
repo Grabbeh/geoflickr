@@ -76,9 +76,9 @@ function ajaxLatLonPost(lat, lon) {
                 $('#photos').text('Apologies - no response from Flickr - please try again')
             }
             else { 
-                console.log(data)
+
                 chunksarray = chunks(data.photo, 30);
-                numberofphotos = data.photo.length;
+                numberofphotos = data.perpage;
                 currentarray = 0;
                 firstarray = chunksarray[currentarray];
                 processFlickrData(firstarray);}
@@ -169,8 +169,23 @@ function reverseGeocode(latLon) {
 
 function processFlickrData(photos) {
     $('#photos').text('')
-    $('#previousbatch').text('Start');
-    $('#nextbatch').text('Next 30');
+
+    if (currentarray === 0) {
+        $('#previousbatch').text('Start');
+        $('#nextbatch').text('Next 30');
+    }
+
+    
+
+    if (currentarray > 0) {
+        $('#previousbatch').text('Previous');
+        $('#nextbatch').text('Next 30');
+    }
+
+    if (currentarray  === chunksarray.length - 1){
+        $('#nextbatch').text('Finish');
+        $('#previousbatch').text('Previous')
+    }
 
     if (photos.length === 0) {
         $('#photos').append("<span>" + "Sorry, no photos for here (although this app can be a little temperamental so you might like to try again)." + "</span>");
