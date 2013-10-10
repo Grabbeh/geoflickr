@@ -116,8 +116,8 @@ function geolocate(pos) {
     center = new google.maps.LatLng(lat, lon);
     reverseGeocode(center);
     map.setCenter(center);
-
     clearMarker();
+    clearImages();
     ajaxLatLonPost(lat, lon);
     placeMarker(center);
 
