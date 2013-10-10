@@ -205,8 +205,6 @@ function collectLicenseData() {
 
 /* 
 
-var array = [{val: 1}, {val:2}, {val: 3}];
-
 var chunks = function(array, size) {
   var chunksarray = [];
   while (array.length) {
