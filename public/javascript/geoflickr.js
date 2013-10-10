@@ -165,10 +165,8 @@ function reverseGeocode(latLon) {
     })
 }
 
-function processFlickrData(data) {
+function processFlickrData(photos) {
     $('#photos').text('')
-    var photos = data.photo;
-    console.log(photos)
 
     if (photos.length === 0) {
         $('#photos').append("<span>" + "Sorry, no photos for here (although this app can be a little temperamental so you might like to try again)." + "</span>");
