@@ -72,13 +72,9 @@ $(document).ready(function () {
 
     $('#searchsubmit').click(function (e) {
         e.preventDefault();
-        if($('#userlocation').val().length === 0) {
-            if(!$(this).parent().hasClass("active")) {
-                alert("Please provide a location");
-            }
-        } else {
-            geocodeAddress()
-        }
+        if(!marker) {
+           alert('You'll need to provide a location before searching via tag alas')
+         }
     });
 
     $("#geolocate").click(function () {
