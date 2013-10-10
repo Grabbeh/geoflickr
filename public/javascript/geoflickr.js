@@ -66,7 +66,7 @@ function ajaxLatLonPost(lat, lon) {
     };
 
     $.ajax({
-        url: "/test",
+        url: "/flickrapi",
         type: "POST",
         contentType: "application/json",
         processData: false,
