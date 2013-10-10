@@ -103,6 +103,8 @@ function clearMarker() {
 function clearImages() {
     $('#previousbutton').text("");
     $('#nextbutton').text("");
+    $('#nextbatch').text("");
+    $('#previousbatch').text("");
     $('#photonumber').children().remove().end();
     $('#photos').children().remove().end();
     $('.bigimage').children().remove().end();
