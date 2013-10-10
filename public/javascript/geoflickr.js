@@ -54,7 +54,7 @@ function addSubmitListener(marker) {
 
 
 function ajaxLatLonPost(lat, lon) {
-
+    chunksarray = [];
     collectLicenseData();
     var tag = $('#tags').val().split(" ")
 
