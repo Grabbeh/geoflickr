@@ -78,6 +78,7 @@ function ajaxLatLonPost(lat, lon) {
             else { 
                 console.log(data)
                 chunksarray = chunks(data.photo, 30);
+                numberofphotos = data.photo.length;
                 currentarray = 0;
                 firstarray = chunksarray[currentarray];
                 processFlickrData(firstarray);}
@@ -175,10 +176,10 @@ function processFlickrData(photos) {
         $('#photos').append("<span>" + "Sorry, no photos for here (although this app can be a little temperamental so you might like to try again)." + "</span>");
     } else {
 
-        if (photos.length === 1) {
-            $('#photonumber').append("<span><b>" + photos.length + " lonely photo - click to enlarge" + "</b></span>");
+        if (numberofphotos === 1) {
+            $('#photonumber').append("<span><b>" + numberofphotos + " lonely photo - click to enlarge" + "</b></span>");
         } else {
-            $('#photonumber').append("<span><b>" + photos.length + " photos" + "</b></span><span>" + " - click to enlarge" + "</span>");
+            $('#photonumber').append("<span><b>" + numberofphotos + " photos" + "</b></span><span>" + " - click to enlarge" + "</span>");
         }
 
         for (var i = 0; i < photos.length; i++) {
