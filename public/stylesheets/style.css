@@ -163,9 +163,8 @@ div#mymap {
 }
 
 .bigimage {
-    width: 100%;
+    
 }
-
 
 #geolocate:hover {
     cursor:pointer; 
