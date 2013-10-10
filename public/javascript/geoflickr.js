@@ -167,8 +167,8 @@ function reverseGeocode(latLon) {
 
 function processFlickrData(photos) {
     $('#photos').text('')
-    $('#prevbatch').text('Start');
-    $('#nextbatch').text('Next batch');
+    $('#previousbatch').text('Start');
+    $('#nextbatch').text('Next 30');
 
     if (photos.length === 0) {
         $('#photos').append("<span>" + "Sorry, no photos for here (although this app can be a little temperamental so you might like to try again)." + "</span>");
