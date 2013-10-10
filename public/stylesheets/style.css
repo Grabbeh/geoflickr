@@ -14,14 +14,11 @@ body {
 }
 
 .row {
-width: 100%;
-min-width: 755px;
-margin: 0 auto;
-overflow: hidden;
+    width: 100%;
 }
 
 input {
-font-family: 'Open Sans', Arial;
+    font-family: 'Open Sans', Arial;
 }
 
 a {color: #000000;}
@@ -29,9 +26,7 @@ a:link {text-decoration: none;}
 a:visited {text-decoration: none;}
 a:active {text-decoration: none;}
 
-a:hover {
-    text-decoration: underline;
-}
+a:hover { text-decoration: underline;}
 
 #licenseform {
     list-style: none;
@@ -43,6 +38,7 @@ a:hover {
     margin-right: 10px;
     margin-bottom: 5px;
 }
+
 #maincontainer {
     position:relative;
     width:100%;   
