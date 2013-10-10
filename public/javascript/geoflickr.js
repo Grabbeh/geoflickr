@@ -202,3 +202,41 @@ function collectLicenseData() {
     }
 
 }
+
+/* 
+
+var array = [{val: 1}, {val:2}, {val: 3}];
+
+var chunks = function(array, size) {
+  var chunksarray = [];
+  while (array.length) {
+    chunksarray.push(array.splice(0, size));
+  }
+  return chunksarray;
+};
+
+var chunksarray = chunks(data.photo, 30);
+var currentarray = chunksarray[0];
+
+
+$('#next).click(function(){
+    clearImages();
+if (currentarray < chunksarray.length){
+    currentarray = results[currentarray++]
+    processFlickrData(currentarray)
+}
+else { [remove next button ]  }
+})
+
+$('#previous).click(function(){
+  clearImages();
+if (currentarray > 0){
+   currentarray = results[currentarray--]
+   processFlickrData(currentarray);
+}
+else { [remove text from prev button ]      }
+  })
+
+
+
+*/
