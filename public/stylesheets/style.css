@@ -138,8 +138,6 @@ div#mymap {
     height:100%;
 }
 
-/* HOME PAGE */
-
 #locations {
     list-style: none;
     padding: 0;
@@ -173,6 +171,10 @@ div#mymap {
 
 .findaroute{
     margin-top: 10px;
+}
+
+#nextbatch {
+    float: right;
 }
 
 input.newbutton {
