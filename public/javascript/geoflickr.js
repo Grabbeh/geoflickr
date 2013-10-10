@@ -220,28 +220,7 @@ var chunks = function(array, size) {
 /* 
 
 
-var chunksarray = chunks(data.photo, 30);
-var currentarray = chunksarray[0];
 
-
-$('#next).click(function(){
-    clearImages();
-if (currentarray < chunksarray.length){
-    $('#previousbatch').text('Previous');
-    currentarray = results[currentarray + 1]
-    processFlickrData(currentarray)
-}
-else { $('#nextbatch).text('Finish') }
-})
-
-$('#previous).click(function(){
-  clearImages();
-if (currentarray > 0){
-   currentarray = results[currentarray - 1]
-   processFlickrData(currentarray);
-}
-else { $('#previousbatch').text('Start')}
-  })
 
 
 
