@@ -1,4 +1,3 @@
-
 var express = require('express')
 , util = require('util')
 , routes = require('./routes/main')
@@ -24,7 +23,7 @@ app.configure(function(){
 
 app.get('/', routes.home);
 
-app.post('/test', routes.test);
+app.post('/flickrapi', routes.api);
 
 app.get('*', function(req, res){
   res.send('404, page not found', 404);
