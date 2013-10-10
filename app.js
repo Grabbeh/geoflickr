@@ -25,6 +25,8 @@ app.get('/', routes.home);
 
 app.post('/flickrapi', routes.api);
 
+app.get('/privacy', routes.privacy);
+
 app.get('*', function(req, res){
   res.send('404, page not found', 404);
 });
