@@ -141,6 +141,29 @@ $(document).ready(function () {
             }
         })
     })
+    
+   $('#nextbatch).click(function(){
+       clearImages();
+   if (currentarray < chunksarray.length){
+       $('#
+       previousbatch ').text('
+       Previous ');
+       currentarray = results[currentarray + 1]
+       processFlickrData(currentarray)
+   }
+   else { $('#nextbatch).text('Finish')
+   }
+   })
+   
+   $('#previousbatch).click(function(){
+      clearImages();
+   if (currentarray > 0){
+      currentarray = results[currentarray - 1]
+      processFlickrData(currentarray);
+   }
+   else { $('#previousbatch ').text('Start ')}
+   })
+    
 });
 
 </script>
