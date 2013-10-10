@@ -220,10 +220,11 @@ var currentarray = chunksarray[0];
 $('#next).click(function(){
     clearImages();
 if (currentarray < chunksarray.length){
+    $('#previousbatch').text('Previous');
     currentarray = results[currentarray + 1]
     processFlickrData(currentarray)
 }
-else { [remove next button ]  }
+else { $('#nextbatch).text('Finish') }
 })
 
 $('#previous).click(function(){
@@ -232,7 +233,7 @@ if (currentarray > 0){
    currentarray = results[currentarray - 1]
    processFlickrData(currentarray);
 }
-else { [remove text from prev button ]      }
+else { $('#previousbatch').text('Start')}
   })
 
 
