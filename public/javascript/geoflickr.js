@@ -220,7 +220,7 @@ var currentarray = chunksarray[0];
 $('#next).click(function(){
     clearImages();
 if (currentarray < chunksarray.length){
-    currentarray = results[currentarray++]
+    currentarray = results[currentarray + 1]
     processFlickrData(currentarray)
 }
 else { [remove next button ]  }
@@ -229,7 +229,7 @@ else { [remove next button ]  }
 $('#previous).click(function(){
   clearImages();
 if (currentarray > 0){
-   currentarray = results[currentarray--]
+   currentarray = results[currentarray - 1]
    processFlickrData(currentarray);
 }
 else { [remove text from prev button ]      }
