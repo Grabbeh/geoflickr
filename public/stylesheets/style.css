@@ -218,42 +218,35 @@ margin-right: 0px;
 
 /* MOBILE RESPONSIVE CHANGE */
 
-@media handheld, only screen and (max-width: 767px) {
-
-    body {
-    
-    -webkit-text-size-adjust: none;
-    }
+@media handheld, only screen and (max-width: 1000px) {
 
    #container {
     width: 95%;
    }
+
     body  {
-    min-width: 0;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
+        min-width: 0;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
     }
 
     .row {
-    width: 100%;
-    min-width: 0;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
+        width: 100%;
+        min-width: 0;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
     }
     
-    .row .onecol, .row .twocol, .row .threecol, .row .fourcol, .row .fivecol, .row .sixcol, .row .sevencol, .row .eightcol, .row .ninecol, .row .tencol, .row .elevencol, .row .twelvecol {
+    .row, .row .twelvecol {
     width: auto;
-    float: none;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
+        float: none;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
     }
-
-
-
 }​
