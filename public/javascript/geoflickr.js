@@ -76,10 +76,11 @@ function ajaxLatLonPost(lat, lon) {
                 $('#photos').text('Apologies - no response from Flickr - please try again')
             }
             else { 
-                
+                console.log(data)
                 chunksarray = chunks(data.photo, 30);
-                currentarray = chunksarray[0];
-                processFlickrData(currentarray);}
+                currentarray = 0;
+                firstarray = chunksarray[currentarray];
+                processFlickrData(firstarray);}
         }
     });
 };
@@ -210,18 +211,10 @@ function collectLicenseData() {
 }
 
 var chunks = function(array, size) {
-  var chunksarray = [];
+  
   while (array.length) {
     chunksarray.push(array.splice(0, size));
   }
   return chunksarray;
 };
 
-/* 
-
-
-
-
-
-
-*/

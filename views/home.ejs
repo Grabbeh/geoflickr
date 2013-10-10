@@ -144,26 +144,19 @@ $(document).ready(function () {
         })
     })
     
-   $('#nextbatch).click(function(){
-       clearImages();
-   if (currentarray < chunksarray.length){
-       $('#
-       previousbatch ').text('
-       Previous ');
-       currentarray = results[currentarray + 1]
-       processFlickrData(currentarray)
-   }
-   else { $('#nextbatch).text('Finish')
-   }
+   $('#nextbatch').click(function(){
+      clearImages();
+       $('#previousbatch').text('Previous');
+       currentarray = currentarray + 1;
+       processFlickrData(chunksarray[currentarray])
+
    })
    
-   $('#previousbatch).click(function(){
+   $('#previousbatch').click(function(){
       clearImages();
-   if (currentarray > 0){
-      currentarray = results[currentarray - 1]
-      processFlickrData(currentarray);
-   }
-   else { $('#previousbatch ').text('Start ')}
+      var currentarray = currentarray - 1;
+      processFlickrData(chunksarray[currentarray]);
+      currentarray = currentarray;
    })
     
 });
