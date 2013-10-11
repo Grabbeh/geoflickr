@@ -173,10 +173,12 @@ div#mymap {
 }
 #previousbatch {
     cursor: pointer;
+    font-weight: bold;
 }
 #nextbatch {
     float: right;
     cursor: pointer;
+    font-weight: bold;
 }
 
 input.newbutton {
