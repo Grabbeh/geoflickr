@@ -76,7 +76,7 @@ function ajaxLatLonPost(lat, lon) {
         },
         success: function (data, success, xhr) {
 
-            if (xhr.status === 500){
+            if (xhr.status === 502){
                 $('#photos').text("Server error - please refresh")
             }
             else {
