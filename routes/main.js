@@ -23,7 +23,7 @@ exports.api = function(req, res){
 			res.send();
 		}
 		else {
-		if (!results){
+		if (isEmpty(results)){
 			res.status(204);
 			res.send();
 		}
@@ -39,4 +39,11 @@ exports.privacy = function(req, res){
   res.render('privacy');
 }
 
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
 

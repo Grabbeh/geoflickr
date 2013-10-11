@@ -74,7 +74,7 @@ function ajaxLatLonPost(lat, lon) {
         error: function(data) {
             $('#photos').text('No photos for this location');
         },
-        success: function (data, status) {
+        success: function (data) {
 
             if (!data.photo.length) {
                 $('#photos').text('No photos (although the app can be temperamental so you might like to try again)');
