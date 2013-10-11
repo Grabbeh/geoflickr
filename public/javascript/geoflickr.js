@@ -73,7 +73,7 @@ function ajaxLatLonPost(lat, lon) {
         data: JSON.stringify(obj),
         success: function (data) {
             if (data.pages === 0) {
-                $('#photos').text('Apologies - no response from Flickr - this app can be a little temperamental so please try again')
+                $('#photos').text('There may be no photos for this location although the app can be a little temperamental so perhaps try again')
             }
             else { 
                 numberofphotos = data.photo.length;
