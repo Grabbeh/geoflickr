@@ -76,9 +76,8 @@ function ajaxLatLonPost(lat, lon) {
                 $('#photos').text('Apologies - no response from Flickr - this app can be a little temperamental so please try again')
             }
             else { 
-
+                numberofphotos = data.photo.length;
                 chunksarray = chunks(data.photo, 30);
-                numberofphotos = data.perpage;
                 currentarray = 0;
                 firstarray = chunksarray[currentarray];
                 processFlickrData(firstarray);}
