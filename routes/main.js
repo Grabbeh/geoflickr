@@ -23,7 +23,7 @@ exports.api = function(req, res){
 			res.send();
 		}
 		else {
-		if (isEmpty(results)){
+		if (results.pages === 0){
 			res.status(204);
 			res.send();
 		}

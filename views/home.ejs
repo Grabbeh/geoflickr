@@ -102,7 +102,7 @@ $(document).ready(function () {
         var photoid = $(this).children().attr('photoid');
         var flickrlink = "http://flickr.com/photo.gne?id=" + photoid + "/";
         var bigImg = $('<a/>').attr({href: flickrlink, target: '_blank', title: 'View photo on Flickr'}).append($('<img />').attr({src:$(this).attr('href'), class: 'bigimage'}));
-        console.log(bigImg)
+
         $('.bigimage').html(bigImg);
         
         if(!$(this).hasClass("active")) {

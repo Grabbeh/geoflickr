@@ -74,18 +74,24 @@ function ajaxLatLonPost(lat, lon) {
         error: function(data) {
             $('#photos').text('No photos for this location');
         },
-        success: function (data) {
+        success: function (data, success, xhr) {
 
-            if (!data.photo.length) {
-                $('#photos').text('No photos (although the app can be temperamental so you might like to try again)');
+            if (xhr.status === 500){
+                $('#photos').text("Server error - please refresh")
             }
-            else { 
-                clearImages();
-                numberofphotos = data.photo.length;
-                chunksarray = chunks(data.photo, 30);
-                currentarray = 0;
-                firstarray = chunksarray[currentarray];
-                processFlickrData(firstarray);}
+            else {
+                if (xhr.status === 204){
+                    $('#photos').text("No results (although the app can be temperamental so you may like to try the same location again");
+                }
+                else { 
+                    clearImages();
+                    numberofphotos = data.photo.length;
+                    chunksarray = chunks(data.photo, 30);
+                    currentarray = 0;
+                    firstarray = chunksarray[currentarray];
+                    processFlickrData(firstarray);
+                }
+            }
         }
     });
 };
@@ -140,9 +146,8 @@ function geolocate(pos) {
 function geocodeAddress() {
     var address = $("#userlocation").val();
     geocoder = new google.maps.Geocoder();
-    geocoder.geocode({
-        'address': address
-    }, function (results, status) {
+    geocoder.geocode({'address': address}
+    , function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
 
             $('#locations').append("<li> - " + results[0].formatted_address + "</li>");
