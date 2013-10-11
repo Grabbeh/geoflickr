@@ -98,7 +98,17 @@ $(document).ready(function () {
         $('#photonumber').children().eq(1).remove().end();
         $('#previousbutton').text(" Previous / ");
         $('#nextbutton').text("Next");
-        var bigImg = $("<img/>").attr("src", $(this).attr('href')).addClass('bigimage');
+        
+        var photoid = $(this).attr('photoid')
+        var flickrlink = "http://flickr.com/photo.gne?id=" + photoid";
+        
+        var bigimg = $('<img />').attr({
+           src:$(this).attr('href')
+           }).appendTo($('<a />').attr({
+           href: flickrlink
+         })).addClass('bigimage');
+
+        var html = $("<a>").attr("href", $(this).attr('photoid')).
         $('.bigimage').html(bigImg);
         event.preventDefault();
         if(!$(this).hasClass("active")) {
