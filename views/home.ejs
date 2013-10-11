@@ -102,11 +102,7 @@ $(document).ready(function () {
         var photoid = $(this).attr('photoid')
         var flickrlink = "http://flickr.com/photo.gne?id=" + photoid";
         
-        var bigimg = $('<img />').attr({
-           src:$(this).attr('href')
-           }).appendTo($('<a />').attr({
-           href: flickrlink
-         })).addClass('bigimage');
+        var bigimg = $('<img />').attr({src:$(this).attr('href')}).appendTo($('<a />').attr({href: flickrlink})).addClass('bigimage');
 
         var html = $("<a>").attr("href", $(this).attr('photoid')).
         $('.bigimage').html(bigImg);
@@ -118,7 +114,9 @@ $(document).ready(function () {
     })
 
     $('#nextbutton').click(function (e) {
-        var nextImg = $('<img/>').attr("src", $('a.active').parent().next().find('a').attr('href')).addClass('bigimage');
+        var photoid = $('a.active').parent().next().find('a').attr('photoid')
+        var flickrlink = "http://flickr.com/photo.gne?id=" + photoid";
+        var nextImg = $('<img/>').attr("src", $('a.active').parent().next().find('a').attr('href')).appendTo($('<a />').attr({href: flickrlink})).addClass('bigimage');
         $('.bigimage').html(nextImg);
         $('a.active').parent().next().find('a').addClass("active");
         $('a.active').parent().prev().find('a').removeClass("active");
@@ -126,7 +124,9 @@ $(document).ready(function () {
     })
 
     $('#previousbutton').click(function (e) {
-        var prevImg = $('<img/>').attr("src", $('a.active').parent().prev().find('a').attr('href')).addClass('bigimage');
+        var photoid = $('a.active').parent().prev().find('a').attr('photoid')
+        var flickrlink = "http://flickr.com/photo.gne?id=" + photoid";
+        var prevImg = $('<img/>').attr("src", $('a.active').parent().prev().find('a').attr('href')).appendTo($('<a />').attr({href: flickrlink})).addClass('bigimage');
         $('.bigimage').html(prevImg);
         $('a.active').parent().prev().find('a').addClass("active");
         $('a.active').parent().next().find('a').removeClass("active");
