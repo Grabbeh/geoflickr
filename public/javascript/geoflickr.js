@@ -1,6 +1,6 @@
 function create_map() {
     var mapOptions = {
-        center: new google.maps.LatLng(25.48295117535531, 30.234375),
+        center: new google.maps.LatLng(38.3, 10.78),
         zoom: 2,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         panControl: false,
