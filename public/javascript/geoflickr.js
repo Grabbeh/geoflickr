@@ -76,7 +76,7 @@ function ajaxLatLonPost(lat, lon) {
         },
         success: function (data, status) {
 
-            if (status === '204') {
+            if (!data.photo.length) {
                 $('#photos').text('No photos (although the app can be temperamental so you might like to try again)');
             }
             else { 
