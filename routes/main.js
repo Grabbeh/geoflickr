@@ -18,7 +18,20 @@ exports.api = function(req, res){
 
 	var sO = new searchObject(req.body);
 	flickr.photos.search(sO, function(error, results) {
-		res.json(results);
+		if (error){
+			res.status(500);
+			res.send();
+		}
+		else {
+		if (!results){
+			res.status(204);
+			res.send();
+		}
+		else {
+			res.json(results);
+		}
+		}
+		
 	});
 }
 

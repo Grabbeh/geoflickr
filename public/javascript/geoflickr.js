@@ -71,11 +71,16 @@ function ajaxLatLonPost(lat, lon) {
         contentType: "application/json",
         processData: false,
         data: JSON.stringify(obj),
-        success: function (data) {
-            if (data.pages === 0) {
-                $('#photos').text('There may be no photos for this location although the app can be a little temperamental so perhaps try again')
+        error: function(data) {
+            $('#photos').text('No photos for this location');
+        },
+        success: function (data, status) {
+
+            if (status === '204') {
+                $('#photos').text('No photos (although the app can be temperamental so you might like to try again)');
             }
             else { 
+                clearImages();
                 numberofphotos = data.photo.length;
                 chunksarray = chunks(data.photo, 30);
                 currentarray = 0;
@@ -147,7 +152,6 @@ function geocodeAddress() {
             var lon = userloc.lng();
             clearMarker();
             clearImages();
-            console.log(lat + lon);
             ajaxLatLonPost(lat, lon);
             placeMarker(userloc);
             $('#userlocation').val("");
@@ -185,10 +189,6 @@ function processFlickrData(photos) {
         $('#previousbatch').text('Previous');
     }
 
-    if (photos.length === 0) {
-        $('#photos').append("<span>" + "Sorry, no photos for here (although this app can be a little temperamental so you might like to try again)." + "</span>");
-    } else {
-
         if (numberofphotos === 1) {
             $('#photonumber').append("<span><b>" + numberofphotos + " lonely photo - click to enlarge" + "</b></span>");
         } else {
@@ -206,8 +206,7 @@ function processFlickrData(photos) {
            
             $('#photos').append("<span>" + "<a href=" + mainurl + ">" + "<img photoid=" + photoId + " " + "src=" + thumbnail + "></a></span>");
 
-        };
-    }
+    };   
 }
 
 function collectLicenseData() {
