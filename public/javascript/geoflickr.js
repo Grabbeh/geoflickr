@@ -205,8 +205,8 @@ function processFlickrData(photos) {
 
             var thumbnail = "http://farm" + farmId + ".staticflickr.com/" + serverId + "/" + photoId + "_" + photoSecret + "_t.jpg"
             var mainurl = "http://farm" + farmId + ".staticflickr.com/" + serverId + "/" + photoId + "_" + photoSecret + ".jpg"
-            var flickrurl = "http://flickr.com/photo.gne?=" + photoId + "/"
-            $('#photos').append("<span>" + "<a href=" + mainurl + ">" + "<img src=" + thumbnail + "></a></span>" + "<div class=/"hiddenflickrlink/">" + "<a href=" + flickrurl + ">" + "Photo on Flickr</a></div>");
+           
+            $('#photos').append("<span>" + "<a href=" + mainurl + ">" + "<img src=" + thumbnail + "></a></span>" + "<div class=/"hiddenflickrlink/">");
 
         };
     }
