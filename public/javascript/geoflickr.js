@@ -148,6 +148,7 @@ function geocodeAddress() {
             var lon = userloc.lng();
             clearMarker();
             clearImages();
+            console.log(lat + lon);
             ajaxLatLonPost(lat, lon);
             placeMarker(userloc);
             $('#userlocation').val("");
@@ -175,16 +176,14 @@ function processFlickrData(photos) {
         $('#nextbatch').text('Next 30');
     }
 
-    
-
     if (currentarray > 0) {
         $('#previousbatch').text('Previous');
-        $('#nextbatch').text('Next 30');
+        $('#nextbatch').removeClass('display-none').text('Next 30');
     }
 
-    if (currentarray  === chunksarray.length - 1){
-        $('#nextbatch').text('Finish');
-        $('#previousbatch').text('Previous')
+    if (currentarray >= chunksarray.length - 1){
+        $('#nextbatch').addClass('display-none');
+        $('#previousbatch').text('Previous');
     }
 
     if (photos.length === 0) {

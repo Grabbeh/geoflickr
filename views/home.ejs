@@ -154,8 +154,9 @@ $(document).ready(function () {
    $('#nextbatch').click(function(){
        clearImages();
        currentarray = currentarray + 1;
-       processFlickrData(chunksarray[currentarray]);
        $('#previousbatch').text("Previous");
+       processFlickrData(chunksarray[currentarray]);
+       
    })
    
    $('#previousbatch').click(function(){
