@@ -98,13 +98,13 @@ $(document).ready(function () {
         $('#photonumber').children().eq(1).remove().end();
         $('#previousbutton').text(" Previous / ");
         $('#nextbutton').text("Next");
-        
-        var photoid = $(this).attr('photoid')
-        var flickrlink = "http://flickr.com/photo.gne?id=" + photoid";
-        
-        var bigimg = $('<img />').attr({src:$(this).attr('href'), class: 'bigimage'}).appendTo($('<a />').attr({href: flickrlink}));
-        $('.bigimage').html(bigImg);
         event.preventDefault();
+        var photoid = $(this).children().attr('photoid');
+        var flickrlink = "http://flickr.com/photo.gne?id=" + photoid + "/";
+        var bigImg = $('<a/>').attr({href: flickrlink}).append($('<img />').attr({src:$(this).attr('href'), class: 'bigimage'}));
+        console.log(bigImg)
+        $('.bigimage').html(bigImg);
+        
         if(!$(this).hasClass("active")) {
             $("a.active").removeClass("active");
             $(this).addClass("active");
@@ -112,9 +112,10 @@ $(document).ready(function () {
     })
 
     $('#nextbutton').click(function (e) {
-        var photoid = $('a.active').parent().next().find('a').attr('photoid')
-        var flickrlink = "http://flickr.com/photo.gne?id=" + photoid";
-        var nextImg = $('<img/>').attr({src: $('a.active').parent().next().find('a').attr('href'), class: 'bigimage'}).appendTo($('<a />').attr({href: flickrlink})).addClass('bigimage');
+        var photoid = $('a.active').parent().next().find('img').attr('photoid')
+        var flickrlink = "http://flickr.com/photo.gne?id=" + photoid + "/";
+        console.log(flickrlink)
+        var nextImg = $('<a />').attr({href: flickrlink}).append($('<img/>').attr({src: $('a.active').parent().next().find('a').attr('href'), class: 'bigimage'}));
         $('.bigimage').html(nextImg);
         $('a.active').parent().next().find('a').addClass("active");
         $('a.active').parent().prev().find('a').removeClass("active");
@@ -122,9 +123,9 @@ $(document).ready(function () {
     })
 
     $('#previousbutton').click(function (e) {
-        var photoid = $('a.active').parent().prev().find('a').attr('photoid')
-        var flickrlink = "http://flickr.com/photo.gne?id=" + photoid";
-        var prevImg = $('<img/>').attr({src: $('a.active').parent().prev().find('a').attr('href'), class: 'bigimage'}).appendTo($('<a />').attr({href: flickrlink}));
+        var photoid = $('a.active').parent().prev().find('img').attr('photoid');
+        var flickrlink = "http://flickr.com/photo.gne?id=" + photoid + "/";
+        var prevImg = $('<a />').attr({href: flickrlink}).append($('<img/>').attr({src: $('a.active').parent().prev().find('a').attr('href'), class: 'bigimage'}));
         $('.bigimage').html(prevImg);
         $('a.active').parent().prev().find('a').addClass("active");
         $('a.active').parent().next().find('a').removeClass("active");
