@@ -257,4 +257,8 @@ margin-right: 0px;
     .bigimage {
         width: 100%;
 }
+
+.footer-hide {
+    display: none;
+}
 }​
