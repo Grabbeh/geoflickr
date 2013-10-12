@@ -194,6 +194,10 @@ function processFlickrData(photos) {
         $('#previousbatch').text('Previous');
     }
 
+    if (numberofphotos === 0){
+        $('#photos').append("No results (although the app can be temperamental so you may like to try the same location again")
+    }
+
         if (numberofphotos === 1) {
             $('#photonumber').append("<span><b>" + numberofphotos + " lonely photo - click to enlarge" + "</b></span>");
         } else {
