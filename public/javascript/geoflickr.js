@@ -204,6 +204,8 @@ function processFlickrData(photos) {
             $('#photonumber').append("<span><b>" + numberofphotos + " photos" + "</b></span><span>" + " - click to enlarge" + "</span>");
         }
 
+        if (numberofphotos > 0) {
+
         for (var i = 0; i < photos.length; i++) {
             var farmId = photos[i].farm;
             var serverId = photos[i].server;
@@ -215,7 +217,8 @@ function processFlickrData(photos) {
            
             $('#photos').append("<span>" + "<a href=" + mainurl + ">" + "<img photoid=" + photoId + " " + "src=" + thumbnail + "></a></span>");
 
-    };   
+        };   
+    }
 }
 
 function collectLicenseData() {
