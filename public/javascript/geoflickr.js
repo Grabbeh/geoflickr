@@ -81,7 +81,7 @@ function ajaxLatLonPost(lat, lon) {
             }
             else {
                 if (xhr.status === 204){
-                    $('#photos').text("No results (although the app can be temperamental so you may like to try again");
+                    $('#photos').text("No results (although the app can be temperamental so you may like to try again)");
                 }
                 else { 
                     clearImages();
@@ -190,7 +190,7 @@ function processFlickrData(photos) {
         $('#nextbatch').removeClass('display-none').text('Next 30');
     }
 
-    if (currentarray >= chunksarray.length - 1){
+    if (chunksarray > 0 && currentarray >= chunksarray.length - 1){
         $('#nextbatch').addClass('display-none');
         $('#previousbatch').text('Previous');
     }
@@ -238,7 +238,7 @@ var chunks = function(array, size) {
 function setPhotoWording(numberofphotos){
     switch(numberofphotos){
         case 0:
-        $('#photos').append("No results (although the app can be temperamental so you may like to try again")
+        $('#photos').append("No results (although the app can be temperamental so you may like to try again)")
         break;
 
         case 1:
