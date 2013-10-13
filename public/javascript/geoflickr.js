@@ -181,7 +181,7 @@ function processFlickrData(photos) {
 
     setPhotoWording(numberofphotos);
 
-    if (chunksarray > 0 && currentarray === 0) {
+    if (chunksarray >= 0 && currentarray === 0) {
         $('#previousbatch').text('Start');
         $('#nextbatch').text('Next 30');
     }
