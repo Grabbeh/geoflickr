@@ -77,11 +77,11 @@ function ajaxLatLonPost(lat, lon) {
         success: function (data, success, xhr) {
 
             if (xhr.status === 502){
-                $('#photos').text("Server error - please refresh")
+                $('#photonumber').text("Server error - please refresh")
             }
             else {
                 if (xhr.status === 204){
-                    $('#photos').text("No results (although the app can be temperamental so you may like to try again)");
+                    $('#photonumber').text("No results (although the app can be temperamental so you may like to try again)");
                 }
                 else { 
                     clearImages();
@@ -124,7 +124,7 @@ function clearImages() {
     $('#photonumber').children().remove().end();
     $('#photos').children().remove().end();
     $('.bigimage').children().remove().end();
-    $('#photos').text('Loading (this can take some time due to the amount of data)...')
+    $('#photonumber').text('Loading (this can take some time due to the amount of data)...')
 }
 
 function geolocate(pos) {
@@ -177,7 +177,8 @@ function reverseGeocode(latLon) {
 }
 
 function processFlickrData(photos) {
-    $('#photos').text('');
+    $('#photonumber').text('');
+
     setPhotoWording(numberofphotos);
 
     if (chunksarray > 0 && currentarray === 0) {
@@ -194,7 +195,6 @@ function processFlickrData(photos) {
         $('#nextbatch').addClass('display-none');
         $('#previousbatch').text('Previous');
     }
-
 
         if (numberofphotos > 0) {
 
@@ -238,7 +238,7 @@ var chunks = function(array, size) {
 function setPhotoWording(numberofphotos){
     switch(numberofphotos){
         case 0:
-        $('#photos').append("No results (although the app can be temperamental so you may like to try again)")
+        $('#photonumber').append("No results (although the app can be temperamental so you may like to try again)")
         break;
 
         case 1:
