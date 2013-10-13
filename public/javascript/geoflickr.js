@@ -181,7 +181,7 @@ function processFlickrData(photos) {
 
     setPhotoWording(numberofphotos);
 
-    if (chunksarray >= 0 && currentarray === 0) {
+    if (chunksarray.length > 0 && currentarray === 0) {
         $('#previousbatch').text('Start');
         $('#nextbatch').text('Next 30');
     }
@@ -191,10 +191,17 @@ function processFlickrData(photos) {
         $('#nextbatch').removeClass('display-none').text('Next 30');
     }
 
-    if (chunksarray > 0 && currentarray >= chunksarray.length - 1){
+    if (chunksarray.length > 0 && currentarray >= chunksarray.length - 1){
         $('#nextbatch').addClass('display-none');
         $('#previousbatch').text('Previous');
     }
+
+    if (chunksarray.length === 1) {
+        $('#nextbatch').addClass('display-none');
+        $('#previousbatch').text('Start');
+    }
+
+
 
         if (numberofphotos > 0) {
 
