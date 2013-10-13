@@ -81,7 +81,7 @@ function ajaxLatLonPost(lat, lon) {
             }
             else {
                 if (xhr.status === 204){
-                    $('#photos').text("No results (although the app can be temperamental so you may like to try the same location again");
+                    $('#photos').text("No results (although the app can be temperamental so you may like to try again");
                 }
                 else { 
                     clearImages();
@@ -177,7 +177,8 @@ function reverseGeocode(latLon) {
 }
 
 function processFlickrData(photos) {
-    $('#photos').text('')
+    $('#photos').text('');
+    setPhotoWording(numberofphotos);
 
     if (currentarray === 0) {
         $('#previousbatch').text('Start');
@@ -194,17 +195,6 @@ function processFlickrData(photos) {
         $('#previousbatch').text('Previous');
     }
 
-    if (numberofphotos === 0){
-        $('#photos').append("No results (although the app can be temperamental so you may like to try the same location again")
-    }
-    else {
-
-        if (numberofphotos === 1) {
-            $('#photonumber').append("<span><b>" + numberofphotos + " lonely photo - click to enlarge" + "</b></span>");
-        } else {
-            $('#photonumber').append("<span><b>" + numberofphotos + " photos" + "</b></span><span>" + " - click to enlarge" + "</span>");
-        }
-    }
 
         if (numberofphotos > 0) {
 
@@ -245,3 +235,17 @@ var chunks = function(array, size) {
   return chunksarray;
 };
 
+function setPhotoWording(numberofphotos){
+    switch(numberofphotos){
+        case 0:
+        $('#photos').append("No results (although the app can be temperamental so you may like to try again")
+        break;
+
+        case 1:
+        $('#photonumber').append("<span><b>" + numberofphotos + " lonely photo - click to enlarge" + "</b></span>");
+        break;
+
+        default:
+        $('#photonumber').append("<span><b>" + numberofphotos + " photos" + "</b></span><span>" + " - click to enlarge" + "</span>");
+        }
+    }
