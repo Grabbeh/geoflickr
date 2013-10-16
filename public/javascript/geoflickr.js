@@ -187,7 +187,7 @@ function processFlickrData(photos) {
     }
 
     if (currentarray > 0) {
-        $('#previousbatch').text('Previous');
+        $('#previousbatch').removeClass('display-none').text('Previous');
         $('#nextbatch').removeClass('display-none').text('Next 30');
     }
 
