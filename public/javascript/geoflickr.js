@@ -182,12 +182,12 @@ function processFlickrData(photos) {
     setPhotoWording(numberofphotos);
 
     if (chunksarray.length > 0 && currentarray === 0) {
-        $('#previousbatch').text('Start').addClass('display-none');
+        $('#previousbatch').text('Start');
         $('#nextbatch').text('Next 30');
     }
 
     if (currentarray > 0) {
-        $('#previousbatch').removeClass('display-none').text('Previous');
+        $('#previousbatch').text('Previous');
         $('#nextbatch').removeClass('display-none').text('Next 30');
     }
 

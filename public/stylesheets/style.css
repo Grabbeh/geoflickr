@@ -9,7 +9,7 @@ body {
 }
 
 .display-none {
-    visibility: hidden;
+    display: none;
 }
 
 #container {
