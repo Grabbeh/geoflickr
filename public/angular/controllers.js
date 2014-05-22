@@ -27,7 +27,7 @@ angular.module('app')
                 $.locations.push(data.results[0].formatted_address)
             })
 
-            flickr.search({ lat: l.lat, lon: l.lon, tag: $.tag, licenses: returnArrayOfSelectedBoxesFilter($scope.licenses) })
+            flickr.search({ lat: l.lat, lon: l.lon, tags: $.tag, licenses: returnArrayOfSelectedBoxesFilter($scope.licenses) })
                 .success(function(data){
                     $.arrayOfPhotos = data;
                 })
@@ -37,7 +37,7 @@ angular.module('app')
         });
 
         $.submitSearchForm = function(){
-            flickr.search({ lat: $rootScope.coordinates.lat, lon: $rootScope.coordinates.lon, tag: $.tag, licenses: returnArrayOfSelectedBoxesFilter($scope.licenses) })
+            flickr.search({ lat: $rootScope.coordinates.lat, lon: $rootScope.coordinates.lon, tags: $.tag, licenses: returnArrayOfSelectedBoxesFilter($scope.licenses) })
                 .success(function(data){
                     $.arrayOfPhotos = data;
                 })
@@ -51,7 +51,7 @@ angular.module('app')
             $.location = "";
             geoCoder.geocodeAddress($.location).then(function(data){
                 var latLng = data.results[0].geometry.location;
-                flickr.search({ lat: latLng.lat(), lon: latLng.lng(), tag: $.tag, licenses: returnArrayOfSelectedBoxesFilter($scope.licenses) })
+                flickr.search({ lat: latLng.lat(), lon: latLng.lng(), tags: $.tag, licenses: returnArrayOfSelectedBoxesFilter($scope.licenses) })
                     .success(function(data){
                         $scope.arrayOfPhotos = data;
                     });
