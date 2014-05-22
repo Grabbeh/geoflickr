@@ -5,7 +5,7 @@ app.config(['$locationProvider', '$routeProvider', function($locationProvider, $
             templateUrl: '/partials/main.html',
             controller: 'mainController'
         }).
-        when('/login', {
+        when('/privacy', {
             templateUrl: '/partials/privacy.html'
         }).
         otherwise({
