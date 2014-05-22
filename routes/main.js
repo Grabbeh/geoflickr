@@ -8,16 +8,9 @@ exports.home = function(req, res){
 };
 
 exports.api = function(req, res){
-	function searchObject(obj) {
-		this.lat = obj.lat;
-		this.lon = obj.lon;
-		this.license = obj.licenses;
-		this.min_date_upload = 946706400;
-		this.tags = obj.tag;
-	}
+	req.body.min_date_upload = 946706400;
 
-	var sO = new searchObject(req.body);
-	flickr.photos.search(sO, function(error, results) {
+	flickr.photos.search(req.body, function(error, results) {
 		if (error){
 			res.status(500).send();
 		}
