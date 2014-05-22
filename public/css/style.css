@@ -65,24 +65,24 @@ border: none;
 
 }
 
-#header {
+.header {
     width:100%;
     background:#0080FF;
     height: 50px;
 }
 
-#header p {
+.header p {
     padding: 10px 0 0 20px;
     margin: 0;
 }
 
-#header a {
+.header a {
   color: #FFFFFF; 
   text-decoration: none; 
   font-weight: bold;
 }
 
-#headerlogo {
+.headerlogo {
     float: left;
     text-align: left;
     padding: 10px 0 0px 20px;
@@ -96,7 +96,7 @@ border: none;
     padding: 10px 0 10px 0;
 }
 
-#tag-filter {
+.tag-filter {
     padding: 10px 0 5px 0;
 }
 
