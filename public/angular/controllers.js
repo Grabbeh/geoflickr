@@ -90,8 +90,7 @@ angular.module('app')
 
     .factory('geoCoder', ['$q', function($q){
          geocoder = new google.maps.Geocoder();
-        // set up promise in service so can then use 'then' when service is used.
-        var geoCoder = {
+         var geoCoder = {
             reverseGeocode: function(latLon){
                 var deferred = $q.defer;
                 geocoder.geocode({ latLng: latLon }, 
