@@ -162,7 +162,7 @@ div#mymap {
     
 }
 
-#geolocate:hover {
+.geolocate:hover {
     cursor:pointer; 
     text-decoration: underline;
  }
