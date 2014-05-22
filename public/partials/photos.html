@@ -1,0 +1,17 @@
+<div>
+	   <div><span ng-pluralize 
+	   			count="arrayOfPhotos.length" 
+	   			when="{'one': '1 photo', 'other': '{} photos'}">
+	   		</span>
+	   		<span class="prev-next-buttons" ng-show="activePhoto"><span class="hover" ng-click="prevActive()">Previous /</span><span ng-click="nextActive()" class="hover"> Next</span></span>
+	   </div>
+	   <div>
+	   <span ng-show="activePhoto" class="bigimage"><img ng-src="{{ activePhoto.mainUrl }}"/></span></div>
+	   <div class="photolist">
+	   		<span ng-repeat="photo in photos" class="thumbnail"><img ng-click="makePhotoActive($index)" ng-src="{{ photo.thumbUrl }}"/></span>
+	   </div>
+	 <div mg-clear></div>
+	 <div class="prev-next-buttons" ng-show="photos">
+	 	<span ng-hide="checkIfFirst(pageNumber)" ng-click="prevPage(pageNumber)" class="previousbatch">Previous</span><span ng-hide="checkIfLast(pageNumber)" ng-click="nextPage(pageNumber)"class="nextbatch">Next</span>
+	 </div>
+</div>

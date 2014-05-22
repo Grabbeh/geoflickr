@@ -19,20 +19,32 @@ exports.api = function(req, res){
 	var sO = new searchObject(req.body);
 	flickr.photos.search(sO, function(error, results) {
 		if (error){
-			res.status(500);
-			res.send();
+			res.status(500).send();
 		}
 		else {
-		if (results.pages === 0){
-			res.status(204);
-			res.send();
-		}
-		else {
-			res.json(results);
-		}
+			if (results.pages === 0){
+				res.status(204).send();
+			}
+			else {
+				addUrlsToPhotos(results.photo, function(err, photos){
+					res.json(photos);
+				})
+			}
 		}
 		
 	});
+}
+
+function addUrlsToPhotos(arr, fn){
+    arr.forEach(function(p){
+    	var thumbnail = "http://farm" + p.farm + ".staticflickr.com/" + p.server + "/" + p.id + "_" + p.secret + "_t.jpg";
+        var mainurl = "http://farm" + p.farm + ".staticflickr.com/" + p.server + "/" + p.id + "_" + p.secret + ".jpg";
+        var flickrurl = "http://flickr.com/photo.gne?id=" + p.id + "/";
+    	p.thumbUrl = thumbnail;
+    	p.mainUrl = mainurl
+    	p.flickrUrl = flickrurl;
+    })
+	fn(null, arr)
 }
 
 exports.privacy = function(req, res){
