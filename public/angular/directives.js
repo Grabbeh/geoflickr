@@ -39,9 +39,6 @@ angular.module('app')
                 placeMarker(latLon);
             })
 
-        
-
-
             function placeMarker(location) {
                 if ($rootScope.marker != undefined){
                     $rootScope.marker.setMap(null);
@@ -85,13 +82,14 @@ angular.module('app')
                           return;
                       }
                       scope.groupOfArrays = [];
+                      scope.activePhoto = false;
+
                       for (var i = 0; i < newVal.length; i+= scope.itemsPerPage) {
                            var slice = newVal.slice(i, i+ scope.itemsPerPage);
                            scope.groupOfArrays.push(slice);
                       }
                       scope.pageNumber = 1;
-                      scope.photos = scope.groupOfArrays[0]
-                      scope.activeImage = false;
+                      scope.photos = scope.groupOfArrays[0];
 
                   })
 
@@ -111,9 +109,11 @@ angular.module('app')
                 $scope.groupOfArrays = [];
                 $scope.prevPage = function(pageNumber){
                     $scope.pageNumber--;
+                    $scope.activePhoto = false;
                 };
                 $scope.nextPage = function(pageNumber){
                     $scope.pageNumber++;
+                    $scope.activePhoto = false;
                 };
                 $scope.firstPage = function(){
                     $scope.pageNumber = 1;
