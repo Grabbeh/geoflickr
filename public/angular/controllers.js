@@ -1,7 +1,7 @@
 angular.module('app')
 
-    .controller("mainController", ['$scope', 'geoCoder', 'flickr', '$rootScope', '$http', 'returnArrayOfSelectedBoxesFilter',
-        function($scope, geoCoder, flickr, $rootScope, $http, returnArrayOfSelectedBoxesFilter) {
+    .controller("mainController", ['$scope', '$window', 'geoCoder', 'flickr', '$rootScope', '$http', 'returnArrayOfSelectedBoxesFilter',
+        function($scope, $window, geoCoder, flickr, $rootScope, $http, returnArrayOfSelectedBoxesFilter) {
         var $ = $scope;
 
         $.showAdvancedOptions = false;
@@ -61,11 +61,17 @@ angular.module('app')
             }
 
         $.geolocateUser = function(){
-            // use html5 geolocation tool to obtain coordinates
-            // flickr.search({ lat: [ ], lon: [ ], tag: $.tag, licenses: returnArrayOfSelectedBoxesFilter($scope.licenses) })
-        }
-
-    }])
+              $window.navigator.geolocation.getCurrentPosition(function(pos){
+                    geoCoder.reverseGeocode(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude)).then(function(data){
+                         $.locations.push(data.results[0].formatted_address)
+                    })
+                    flickr.search({ lat: pos.coords.latitude, lon: pos.coords.longitude, tags: $.tag, licenses: returnArrayOfSelectedBoxesFilter($scope.licenses)})
+                        .success(function(data){
+                            $scope.arrayOfPhotos = data;
+                        })
+                    })
+                }
+           }])
 
     .filter("returnArrayOfSelectedBoxes", function(){
         return function(ar){
