@@ -1,27 +1,33 @@
 angular.module('app')
 
-    .controller("mainController", ['$scope', '$rootScope', '$http', 'returnArrayOfSelectedBoxesFilter',
-        function($scope, $rootScope, $http, returnArrayOfSelectedBoxesFilter) {
+    .controller("mainController", ['$scope', 'geoCoder', 'flickr', '$rootScope', '$http', 'returnArrayOfSelectedBoxesFilter',
+        function($scope, geoCoder, flickr, $rootScope, $http, returnArrayOfSelectedBoxesFilter) {
         var $ = $scope;
 
         $.showAdvancedOptions = false;
         $.showRecentLocations = false;
+        $.location = "";
+        $.locations = [];
 
-        $.licenses = [{ checked: true, number: 0, type: "All rights reserved"}, 
-                        { checked: true, number: 1, type: "Attribution-Non-Commercial-Share Alike Licence"}, 
-                        { checked: true, number: 2, type: "Attribution-Non-Commercial Licence"}, 
-                        { checked: true, number: 3, type: "Attribution-Non-Commercial-NoDerivs Licence"}, 
-                        { checked: true, number: 4, type:"Attribution Licence"}, 
-                        { checked: true, number: 5, type:"Attribution-Share Alike Licence"}, 
-                        { checked: true, number: 6, type:"Attribution-No Derivs Licence"}, 
-                        { checked: true, number: 7, type:"No known copyright restrictions"}, 
-                        { checked: true, number: 8, type: "United States Government Work"}]
+        $.licenses = 
+        [{ checked: true, number: 0, type: "All rights reserved"}, 
+        { checked: true, number: 1, type: "Attribution-Non-Commercial-Share Alike Licence"}, 
+        { checked: true, number: 2, type: "Attribution-Non-Commercial Licence"}, 
+        { checked: true, number: 3, type: "Attribution-Non-Commercial-NoDerivs Licence"}, 
+        { checked: true, number: 4, type:"Attribution Licence"}, 
+        { checked: true, number: 5, type:"Attribution-Share Alike Licence"}, 
+        { checked: true, number: 6, type:"Attribution-No Derivs Licence"}, 
+        { checked: true, number: 7, type:"No known copyright restrictions"}, 
+        { checked: true, number: 8, type: "United States Government Work"}]
 
         $.tag = "";
 
-        $.$on('map.click', function(e, l){ 
+        $.$on('coords.change', function(e, l){ 
+            geoCoder.reverseGeocode(new google.maps.LatLng(l.lat, l.lng)).then(function(data){
+                $.locations.push(data.results[0].formatted_address)
+            })
 
-            $http.post('/api/flickrapi', { lat: l.lat, lon: l.lon, tag: $.tag, licenses: returnArrayOfSelectedBoxesFilter($scope.licenses) })
+            flickr.search({ lat: l.lat, lon: l.lon, tag: $.tag, licenses: returnArrayOfSelectedBoxesFilter($scope.licenses) })
                 .success(function(data){
                     $.arrayOfPhotos = data;
                 })
@@ -29,6 +35,34 @@ angular.module('app')
                     console.log("Error")
                 })
         });
+
+        $.submitSearchForm = function(){
+            flickr.search({ lat: $rootScope.coordinates.lat, lon: $rootScope.coordinates.lon, tag: $.tag, licenses: returnArrayOfSelectedBoxesFilter($scope.licenses) })
+                .success(function(data){
+                    $.arrayOfPhotos = data;
+                })
+                .error(function(){
+                    console.log("Error")
+                })
+            }) 
+
+        $.submitLocationForm = function(){
+            $.locations.push($.location);
+            $.location = "";
+            geoCoder.geocodeAddress($.location).then(function(data){
+                var latLng = data.results[0].geometry.location;
+                flickr.search({ lat: latLng.lat(), lon: latLng.lng(), tag: $.tag, licenses: returnArrayOfSelectedBoxesFilter($scope.licenses) })
+                    .success(function(data){
+                        $scope.arrayOfPhotos = data;
+                    });
+                });
+            }
+
+        $.geolocateUser = function(){
+            // use html5 geolocation tool to obtain coordinates
+            // flickr.search({ lat: [ ], lon: [ ], tag: $.tag, licenses: returnArrayOfSelectedBoxesFilter($scope.licenses) })
+        }
+
     }])
 
     .filter("returnArrayOfSelectedBoxes", function(){
@@ -42,3 +76,45 @@ angular.module('app')
             return arr;
         }
     })
+
+    .factory('flickr', ['$http', function($http){
+        var flickr = {
+            search: function(search){
+                return $http.post('/api/flickrapi', search);
+            }
+        }
+        return flickr;
+    }])
+
+    .factory('geoCoder', ['$q', function($q){
+         geocoder = new google.maps.Geocoder();
+        // set up promise in service so can then use 'then' when service is used.
+        var geoCoder = {
+            reverseGeocode: function(latLon){
+                var deferred = $q.defer;
+                geocoder.geocode({
+                        latLng: latLon
+                     }, function(results, status){ 
+                        if (status == google.maps.GeocoderStatus.OK){
+                            return deferred.resolve(results);
+                        }
+                        return deferred.reject();
+                     })
+                return deferred.promise;
+                },
+            geocodeAddress: function(address){
+                 var deferred = $q.defer;
+                 geocoder.geocode({
+                    address: address
+                 }, function(results, status){
+                    if (status == google.maps.GeocoderStatus.OK){
+                        return deferred.resolve(results);
+                    }
+                    return deferred(reject);
+                 })
+                 return deferred.promise;
+            }
+        }
+        return geoCoder;
+
+    }])

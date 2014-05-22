@@ -2,15 +2,13 @@
          
 			<div class="row">
 			<div class="twelvecol">
-			    <div class="findaroute"><span style="padding-right: 10px">Find photos <span id="geolocate">near me</span>, near</span><input class="newinput" id="userlocation"><input class="newbutton hover" id="userlocationsubmit" type="submit" value="Enter"> or click below</div>
+			    <div class="findaroute"><span style="padding-right: 10px">Find photos <span ng-click="geolocateUser()" id="geolocate">near me</span>, near</span><input ng-model="location" class="newinput" id="userlocation"><input class="newbutton hover" ng-click="submitLocationForm()" id="userlocationsubmit" type="submit" value="Enter"> or click below</div>
 			</div>
 			</div>
-
 
         <div class="row">
           <div class="twelvecol">
             <div ng-click="showAdvancedOptions = !showAdvancedOptions" class="hover" id="advancedsearch"><span ng-hide="showAdvancedOptions">Show</span><span ng-show="showAdvancedOptions">Hide</span> advanced options</div>
-
 
             <div ng-show="showAdvancedOptions">
                 <form>
@@ -21,7 +19,7 @@
                   </ul>
                   <p>For more information on licences please visit <a href="http://www.flickr.com/creativecommons/">Flickr's Creative Commons Page</a></p>
                 </form>
-                <form>
+                <form ng-submit="submitSearchForm()">
                     <div id="tag-filter"><b>Filter by tags</b> (space separated)</div>
                     <div>
                     <input class="newinput" type="text" id="tags" ng-model="tag"> 
@@ -34,11 +32,14 @@
          <div class="row">
             <div class="twelvecol">
                <div id="map">
-                  <div mg-map id="mymap"></div>
+                  <div mg-map id="mymap" coords="coords"></div>
                </div>
                <p ng-click="showRecentLocations = !showRecentLocations" class="hover" id="locationtoggle">Recent locations - <span ng-hide="showRecentLocations"> show </span><span ng-show="showRecentLocations"> hide</span></p>
                <div ng-show="showRecentLocations">
                <ul id="locations">
+                  <li ng-repeat="l in locations">
+                    {{ l }}
+                  </li>
                </ul>
                </div>
             </div>

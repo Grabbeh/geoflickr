@@ -5,6 +5,11 @@ angular.module('app')
         replace: true,
         template: '<div></div>',
         link: function(scope, element, attrs) {
+
+            scope.$watch('attrs.coords', function(coords){
+                 placeMarker(coords)
+            })
+
             var mapOptions = {
                 center: new google.maps.LatLng(38.3, 10.78),
                 zoom: 2,
@@ -25,9 +30,18 @@ angular.module('app')
             google.maps.event.addListener(map, 'click', function (event) {
                 var latLon = event.latLng;
                 var latLonObject = { lat: latLon.lat(), lon: latLon.lng() };
-                $rootScope.$broadcast('map.click', latLonObject)
+                $rootScope.$broadcast('coords.change', latLonObject);
+                $rootScope.coordinates = latLonObject;
                 map.setCenter(latLon);
                 placeMarker(latLon);
+            })
+
+             google.maps.event.addListener(marker, 'dragend', function (event) {
+                var latLon = marker.getPosition();
+                var latLonObject = { lat: latLon.lat(), lon: latLon.lng() };
+                $rootScope.$broadcast('coords.change', latLonObject);
+                $rootScope.coordinates = latLonObject;
+                map.setCenter(latLon);
             })
 
 
