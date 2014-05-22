@@ -111,7 +111,7 @@ angular.module('app')
                     if (status == google.maps.GeocoderStatus.OK){
                         return deferred.resolve(results);
                     }
-                    return deferred(reject);
+                    return deferred.reject());
                  })
                  return deferred.promise;
             }
