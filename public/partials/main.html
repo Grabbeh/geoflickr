@@ -37,7 +37,7 @@
                </div>
                <p ng-click="showRecentLocations = !showRecentLocations" class="hover">Recent locations - <span ng-hide="showRecentLocations"> show </span><span ng-show="showRecentLocations"> hide</span></p>
                <div ng-show="showRecentLocations">
-               <ul class="locations">
+               <ul class="location-list">
                   <li ng-repeat="l in locations">
                     {{ l }}
                   </li>
