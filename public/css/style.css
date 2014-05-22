@@ -158,8 +158,8 @@ div#mymap {
     margin: 0px 10px 10px 0px;
 }
 
-.bigimage {
-    
+.active-image {
+    margin: 20px 0; 
 }
 
 .geolocate:hover {
@@ -260,7 +260,7 @@ margin-right: 0px;
         padding-left: 0px;
         padding-right: 0px;
     }
-    .bigimage {
+    .active-image {
         width: 100%;
 }
 

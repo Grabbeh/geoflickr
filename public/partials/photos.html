@@ -8,8 +8,8 @@
 	   		<span class="prev-next-buttons" ng-show="activePhoto"><span class="hover" ng-click="prevActive()"> - Previous /</span><span ng-click="nextActive()" class="hover"> Next</span>
 	   		</span>
 	    </div>
-	    <div>
-	   		<span ng-show="activePhoto" class="bigimage"><img ng-src="{{ activePhoto.mainUrl }}"/></span>
+	    <div class="active-photo">
+	   		<span class="active-photo" ng-show="activePhoto"><img ng-src="{{ activePhoto.mainUrl }}"/></span>
 		</div>
 	    <div class="photolist">
 	   		<span ng-repeat="photo in photos" class="thumbnail"><img ng-click="makePhotoActive($index)" ng-src="{{ photo.thumbUrl }}"/></span>
