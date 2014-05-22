@@ -55,6 +55,8 @@ angular.module('app')
                     .success(function(data){
                         $scope.arrayOfPhotos = data;
                     });
+                }, function(err){
+                    $.error = "Sorry, we did not recognise this location";
                 });
             }
 
