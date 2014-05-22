@@ -140,7 +140,7 @@ div#mymap {
     height:100%;
 }
 
-.locations {
+.location-list {
     list-style: none;
     padding: 0;
     margin: 0 0 10px 0;
