@@ -5,9 +5,13 @@ angular.module('app')
         replace: true,
         template: '<div></div>',
         link: function(scope, element, attrs) {
+          
+            scope.$watch(attrs.coords, function(coords){
 
-            scope.$watch('attrs.coords', function(coords){
-                 placeMarker(coords)
+              if (coords === undefined){
+                  return;
+              }
+              placeMarker(new google.maps.LatLng(coords.lat, coords.lon))
             })
 
             var mapOptions = {
@@ -32,29 +36,32 @@ angular.module('app')
                 var latLonObject = { lat: latLon.lat(), lon: latLon.lng() };
                 $rootScope.$broadcast('coords.change', latLonObject);
                 $rootScope.coordinates = latLonObject;
-                map.setCenter(latLon);
                 placeMarker(latLon);
             })
 
-             google.maps.event.addListener(marker, 'dragend', function (event) {
-                var latLon = marker.getPosition();
-                var latLonObject = { lat: latLon.lat(), lon: latLon.lng() };
-                $rootScope.$broadcast('coords.change', latLonObject);
-                $rootScope.coordinates = latLonObject;
-                map.setCenter(latLon);
-            })
+        
 
 
             function placeMarker(location) {
-                marker = new google.maps.Marker({
+                if ($rootScope.marker != undefined){
+                    $rootScope.marker.setMap(null);
+                }
+                $rootScope.marker = new google.maps.Marker({
                     position: location,
                     map: map,
                     flat: true,
                     draggable: true
                 });
+                map.setCenter(location);
                 if (map.getZoom() < 13) {
                     map.setZoom(13)
                 }
+                google.maps.event.addListener($rootScope.marker, 'dragend', function (event) {
+                    var latLon = $rootScope.marker.getPosition();
+                    var latLonObject = { lat: latLon.lat(), lon: latLon.lng() };
+                    $rootScope.$broadcast('coords.change', latLonObject);
+                    map.setCenter(latLon);
+                })
             };
         }
     };
@@ -73,21 +80,26 @@ angular.module('app')
             templateUrl: "/partials/photos.html",
             replace: true, 
             link: function(scope, elements, attrs){
-                 scope.$watch(attrs.arrayOfPhotos, function(newVal){
+                 scope.$watch('arrayOfPhotos', function(newVal){
                       if (newVal === undefined){
                           return;
                       }
-                      for (var i=0; i < newVal.length; i+= scope.itemsPerPage) {
+                      scope.groupOfArrays = [];
+                      for (var i = 0; i < newVal.length; i+= scope.itemsPerPage) {
                            var slice = newVal.slice(i, i+ scope.itemsPerPage);
                            scope.groupOfArrays.push(slice);
                       }
                       scope.pageNumber = 1;
+                      scope.photos = scope.groupOfArrays[0]
                       scope.activeImage = false;
-                 })
 
-                  scope.$watch('pageNumber', function(newPage){
+                  })
+
+                  scope.$watch('pageNumber', function(newPage){ 
+                      if (newPage === 1){
+                        return;
+                      }
                       scope.photos = scope.groupOfArrays[newPage -1];
-                      console.log(scope.photos)
                   });
     
             },
@@ -134,13 +146,3 @@ angular.module('app')
           }
       }
   })
-/*
- .directive('mgLicensesForm', function() {
-    return {
-      templateUrl: "/partials/licenses.html",
-      scope: {
-        licenses: "=",
-      }
-    };
-  })
- */
