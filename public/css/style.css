@@ -16,7 +16,7 @@ body {
     visibility: hidden;
 }
 
-#container {
+.container {
     width: 70%;
     margin: 0 auto;
 }
@@ -36,7 +36,7 @@ a:active {text-decoration: none;}
 
 a:hover { text-decoration: underline;}
 
-#licenseform {
+.licenseform {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -47,7 +47,7 @@ a:hover { text-decoration: underline;}
     margin-bottom: 5px;
 }
 
-#maincontainer {
+.maincontainer {
     position:relative;
     width:100%;   
     min-height:100%;
@@ -92,7 +92,7 @@ border: none;
     font-size: 22px;
 }
 
-#advancedsearch {
+.advancedsearch {
     padding: 10px 0 10px 0;
 }
 
@@ -100,7 +100,7 @@ border: none;
     padding: 10px 0 5px 0;
 }
 
-#footer {
+.footer {
     position:absolute;
     bottom:0;
     width:100%;
@@ -110,12 +110,12 @@ border: none;
     padding:0;
 }
 
-#footer-wording {
+.footer-wording {
     color: white;
     padding: 10px;
 }
 
-#footer-wording a {
+.footer-wording a {
     color: white;
     text-decoration: underline;
 }
@@ -140,7 +140,7 @@ div#mymap {
     height:100%;
 }
 
-#locations {
+.locations {
     list-style: none;
     padding: 0;
     margin: 0 0 10px 0;
@@ -231,7 +231,7 @@ margin-right: 0px;
 
 @media handheld, only screen and (max-width: 1000px) {
 
-   #container {
+   .container {
     width: 95%;
    }
 
