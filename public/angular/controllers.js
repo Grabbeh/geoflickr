@@ -94,16 +94,15 @@ angular.module('app')
         var geoCoder = {
             reverseGeocode: function(latLon){
                 var deferred = $q.defer;
-                geocoder.geocode({
-                        latLng: latLon
-                     }, function(results, status){ 
+                geocoder.geocode({ latLng: latLon }, 
+                function(results, status){ 
                         if (status == google.maps.GeocoderStatus.OK){
                             return deferred.resolve(results);
                         }
                         return deferred.reject();
-                     })
+                })
                 return deferred.promise;
-                },
+            },
             geocodeAddress: function(address){
                  var deferred = $q.defer;
                  geocoder.geocode({
