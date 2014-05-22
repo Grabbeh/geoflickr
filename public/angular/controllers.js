@@ -31,8 +31,8 @@ angular.module('app')
                 .success(function(data){
                     $.arrayOfPhotos = data;
                 })
-                .error(function(){
-                    console.log("Error")
+                .error(function(err){
+                    console.log(err)
                 })
         });
 
@@ -41,8 +41,8 @@ angular.module('app')
                 .success(function(data){
                     $.arrayOfPhotos = data;
                 })
-                .error(function(){
-                    console.log("Error")
+                .error(function(err){
+                    console.log(err)
                 })
             }) 
 
