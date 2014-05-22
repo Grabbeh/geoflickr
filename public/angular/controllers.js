@@ -9,8 +9,8 @@ angular.module('app')
         $.location = "";
         $.locations = [];
 
-        $.licenses = 
-        [{ checked: true, number: 0, type: "All rights reserved"}, 
+        $.licenses = [
+        { checked: true, number: 0, type: "All rights reserved"}, 
         { checked: true, number: 1, type: "Attribution-Non-Commercial-Share Alike Licence"}, 
         { checked: true, number: 2, type: "Attribution-Non-Commercial Licence"}, 
         { checked: true, number: 3, type: "Attribution-Non-Commercial-NoDerivs Licence"}, 
