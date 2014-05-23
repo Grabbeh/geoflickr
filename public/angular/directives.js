@@ -99,13 +99,13 @@ angular.module('app')
                       }
                       scope.photos = scope.groupOfArrays[newPage -1];
                   });
-    
             },
             scope: {
                 arrayOfPhotos: "=",
                 itemsPerPage: "="
             },
             controller: function($scope) {
+                $scope.activePhoto = false;
                 $scope.groupOfArrays = [];
                 $scope.prevPage = function(pageNumber){
                     $scope.pageNumber--;

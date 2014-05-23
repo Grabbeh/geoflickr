@@ -6,6 +6,7 @@ angular.module('app')
 
         $.showAdvancedOptions = false;
         $.showRecentLocations = false;
+        $.tag = "";
         $.location = "";
         $.locations = [];
 

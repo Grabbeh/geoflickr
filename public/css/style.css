@@ -12,10 +12,6 @@ body {
     clear: both;
 }
 
-.display-none {
-    visibility: hidden;
-}
-
 .container {
     width: 70%;
     margin: 0 auto;
@@ -154,11 +150,14 @@ div#mymap {
 
 .thumbnail {
     float: left;
-    
     margin: 0px 10px 10px 0px;
 }
 
-.active-image {
+.thumbnail:hover {
+    cursor: pointer;
+}
+
+.active-photo {
     margin: 20px 0; 
 }
 
@@ -167,7 +166,7 @@ div#mymap {
     text-decoration: underline;
  }
 
-.findaroute{
+.findaroute {
     margin-top: 10px;
 }
 
@@ -260,7 +259,7 @@ margin-right: 0px;
         padding-left: 0px;
         padding-right: 0px;
     }
-    .active-image {
+    .active-photo {
         width: 100%;
 }
 
