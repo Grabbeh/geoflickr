@@ -9,7 +9,12 @@
   },
   "subdomain": "geoflickr",
   "scripts": {
-    "start": "app.js"
+    "build-js": "browserify public/angular/*.js | uglifyjs -c > public/bundle.js",
+    "build": "npm run build-js",
+    "watch-js": "watchify public/angular/*.js -o public/bundle.js -dv",
+    "watch": "npm run watch-js",
+    "start-production": "npm run build & node app.js",
+    "start-dev": "npm run watch & node app.js"
   },
   "engines": {
     "node": "v0.8.x"
