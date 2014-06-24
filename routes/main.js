@@ -20,6 +20,10 @@ exports.api = function(req, res){
 			}
 			else {
 				addUrlsToPhotos(results.photo, function(err, photos){
+					if (err) {
+						console.log(err);
+					}
+					console.log(photos.length);
 					res.json(photos);
 				})
 			}
