@@ -8,9 +8,7 @@ exports.home = function(req, res){
 };
 
 exports.api = function(req, res){
-	console.log(req.body);
 	req.body.min_date_upload = 946706400;
-
 	flickr.photos.search(req.body, function(error, results) {
 		if (error){
 			res.status(500).send();
