@@ -151,6 +151,8 @@ div#mymap {
 .thumbnail {
     float: left;
     margin: 0px 10px 10px 0px;
+    height: 100px;
+    width: 100px;
 }
 
 .thumbnail:hover {
