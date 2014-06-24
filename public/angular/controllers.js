@@ -30,6 +30,7 @@ angular.module('app')
 
             flickr.search({ lat: l.lat, lon: l.lon, tags: $.tag, licenses: returnSelectedBoxesFilter($scope.licenses) })
                 .success(function(data){
+                    console.log(data);
                     $.arrayOfPhotos = data;
                 })
                 .error(function(err){
@@ -42,6 +43,7 @@ angular.module('app')
             console.log(latLng)
             flickr.search({ lat: latLng.lat(), lon: latLng.lng(), tags: $.tag, licenses: returnSelectedBoxesFilter($scope.licenses) })
                 .success(function(data){
+                    console.log(data);
                     $.arrayOfPhotos = data;
                 })
                 .error(function(err){
@@ -58,6 +60,7 @@ angular.module('app')
                 $.coords = { lat: latLng.lat(), lon: latLng.lng() };
                 flickr.search({ lat: latLng.lat(), lon: latLng.lng(), tags: $.tag, licenses: returnSelectedBoxesFilter($scope.licenses) })
                     .success(function(data){
+                        console.log(data);
                         $scope.arrayOfPhotos = data;
                     });
                 }, function(err){
