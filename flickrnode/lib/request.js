@@ -30,7 +30,7 @@ Request.prototype.executeRequest= function(method, arguments, sign_it, result_ma
 
     var reqOptions = {
     method: 'GET',
-    port: 443,
+    port: 80,
     hostname:"api.flickr.com",
     path: this.baseUrl + argumentString
     }
