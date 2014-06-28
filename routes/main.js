@@ -16,6 +16,7 @@ exports.api = function(req, res){
 		}
 		else {
 			if (results.pages === 0){
+				console.log("No results")
 				res.status(204).send();
 			}
 			else {
