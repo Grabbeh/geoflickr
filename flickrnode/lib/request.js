@@ -29,10 +29,10 @@ Request.prototype.executeRequest= function(method, arguments, sign_it, result_ma
     }
 
     var reqOptions = {
-    method: 'GET',
-    port: 443,
-    hostname:"api.flickr.com",
-    path: this.baseUrl + argumentString
+        method: 'GET',
+        port: 443,
+        hostname:"api.flickr.com",
+        path: this.baseUrl + argumentString
     }
 
     var req = http.request(reqOptions, function (response) {
@@ -46,9 +46,10 @@ Request.prototype.executeRequest= function(method, arguments, sign_it, result_ma
             // Bizarrely Flickr seems to send back invalid JSON (it escapes single quotes in certain circumstances?!?!!?)
             // We fix that here.
             if( result ) {  
-                result= result.replace(/\\'/g,"'");
+                console.log(result);
+                result = result.replace(/\\'/g,"'");
             }
-                var res= JSON.parse(result);
+                var res = JSON.parse(result);
                 if( res.stat && res.stat == "ok" ) {
                     // Munge the response to strip out the stat and just return the response value
                     for(var key in res) {
