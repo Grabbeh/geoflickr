@@ -36,10 +36,11 @@ Request.prototype.executeRequest= function(method, arguments, sign_it, result_ma
     }
 
     var req = http.request(reqOptions, function (response) {
-       
+        
         var result= "";
         response.setEncoding("utf8");
         response.addListener("data", function (chunk) {
+          console.log(chunk);
           result+= chunk;
         });
         response.addListener("end", function () {   
