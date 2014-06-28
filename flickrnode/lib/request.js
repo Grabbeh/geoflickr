@@ -1,4 +1,4 @@
-var http = require("http");
+var http = require("https");
 
 var Request= function Request(api_key) {
     this._configure(api_key);
