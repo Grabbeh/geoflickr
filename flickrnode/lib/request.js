@@ -46,7 +46,6 @@ Request.prototype.executeRequest= function(method, arguments, sign_it, result_ma
             // Bizarrely Flickr seems to send back invalid JSON (it escapes single quotes in certain circumstances?!?!!?)
             // We fix that here.
             if( result ) {  
-                console.log(result);
                 result = result.replace(/\\'/g,"'");
             }
                 var res = JSON.parse(result);
