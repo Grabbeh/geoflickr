@@ -8,24 +8,17 @@ exports.home = function(req, res){
 };
 
 exports.api = function(req, res){
-	console.log(req.body);
 	req.body.min_date_upload = 946706400;
 	flickr.photos.search(req.body, function(error, results) {
 		if (error){
-			console.log(error);
 			res.status(500).send();
 		}
 		else {
 			if (results.pages === 0){
-				console.log("No results")
 				res.status(204).send();
 			}
 			else {
 				addUrlsToPhotos(results.photo, function(err, photos){
-					if (err) {
-						console.log(err);
-					}
-					console.log(photos.length);
 					res.json(photos);
 				})
 			}
